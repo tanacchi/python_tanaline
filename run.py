@@ -1,4 +1,4 @@
 # coding:UTF-8
 
-from app import app
-app.run()
+from app import server
+server.run()

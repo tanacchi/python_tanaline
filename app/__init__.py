@@ -13,15 +13,15 @@ from linebot.models import (
 
 import os
 
-app = Flask(__name__)
+server = Flask(__name__)
 
 CHANNEL_ACCESS_TOKEN = os.environ['CHANNEL_ACCESS_TOKEN']
 CHANNEL_SECRET       = os.environ['CHANNEL_SECRET']
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+server.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
-db = SQLAlchemy(app)
+db = SQLAlchemy(server)
 
 
 class Talk(db.Model):
@@ -34,14 +34,14 @@ class Talk(db.Model):
         self.content = content
 
 
-@app.route("/webhook", methods=['POST'])
+@server.route("/webhook", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
+    server.logger.info("Request body: " + body)
 
     # handle webhook body
     try:
