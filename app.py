@@ -58,6 +58,12 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text="Hello, I'm written in Python."))
+    if event.type == 'message' and event.message.type == 'text':
+        source_type = event.source.type
+        talk = Talk(event.source.user_id, event.message.text)
+        db.session.add(talk)
+        db.session.commit()
+
 
 
 if __name__ == "__main__":
