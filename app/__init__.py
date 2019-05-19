@@ -63,8 +63,3 @@ def handle_message(event):
         talk = Talk(event.source.user_id, event.message.text)
         db.session.add(talk)
         db.session.commit()
-
-
-
-if __name__ == "__main__":
-    app.run()
