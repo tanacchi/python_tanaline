@@ -1,10 +1,10 @@
 from flask import Flask, request, abort
 from flask_sqlalchemy import SQLAlchemy
-
 from linebot import (
     LineBotApi, WebhookHandler
 )
 import os
+
 
 flask_app = Flask(__name__)
 
