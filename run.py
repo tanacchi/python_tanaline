@@ -1,5 +1,5 @@
 from app import app
-from app.controller import line_controller
+import app.controllers
 
 if __name__ == '__main__':
     app.run()
