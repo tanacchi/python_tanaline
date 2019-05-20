@@ -1,11 +1,16 @@
 from app import (
     flask_app, request, abort,
     line_bot_api, handler,
-    InvalidSignatureError,
-    MessageEvent, TextMessage, TextSendMessage,
     db
 )
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
 from app.models.talk import Talk
+
 
 @flask_app.route("/webhook", methods=['POST'])
 def callback():
@@ -36,4 +41,3 @@ def handle_message(event):
         talk = Talk(event.source.user_id, event.message.text)
         db.session.add(talk)
         db.session.commit()
-
