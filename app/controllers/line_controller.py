@@ -5,7 +5,7 @@ from app import (
     MessageEvent, TextMessage, TextSendMessage,
     db
 )
-import app.models
+from app.models.talk import Talk
 
 @flask_app.route("/webhook", methods=['POST'])
 def callback():

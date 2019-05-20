@@ -1,1 +1,1 @@
-from .talk import Talk
+from . import talk
