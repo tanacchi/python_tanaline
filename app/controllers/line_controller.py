@@ -44,5 +44,4 @@ def handle_message(event):
             db.session.add(talk)
             db.session.commit()
 
-        reply_num = min(len(text_messages), 5)
-        line_bot_api.reply_message(event.reply_token, text_messages[:reply_num])
+        line_bot_api.reply_message(event.reply_token, text_messages[-5:])
