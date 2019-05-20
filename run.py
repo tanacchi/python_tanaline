@@ -1,4 +1,6 @@
-# coding:UTF-8
+from app import flask_app
+import app.controllers
 
-from app import server
-server.run()
+
+if __name__ == '__main__':
+    flask_app.run()
