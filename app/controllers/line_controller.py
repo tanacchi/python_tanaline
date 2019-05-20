@@ -10,6 +10,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 from app.models.talk import Talk
+import urllib.request as urlreq
 
 
 @flask_app.route("/webhook", methods=['POST'])
@@ -39,6 +40,11 @@ def handle_message(event):
             talks = db.session.query(Talk).filter_by(user_id=event.source.user_id)
             for talk in talks:
                 text_messages.append(TextSendMessage(text=talk.content))
+        elif event.message.text == "送信":
+            url = "https://tanacchi-birdbrains.herokuapp.com/line"
+            req = urlreq.Request(url)
+            with urlreq.urlopen(req) as res:
+                text_messages.append(TextSendMessage(text=req.read().decode()))
         else:
             talk = Talk(event.source.user_id, event.message.text)
             db.session.add(talk)
