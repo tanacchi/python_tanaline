@@ -44,7 +44,7 @@ def handle_message(event):
             url = "https://tanacchi-birdbrains.herokuapp.com/line"
             req = urlreq.Request(url)
             with urlreq.urlopen(req) as res:
-                text_messages.append(TextSendMessage(text=req.read().decode()))
+                text_messages.append(TextSendMessage(text=res.read().decode()))
         else:
             talk = Talk(event.source.user_id, event.message.text)
             db.session.add(talk)
