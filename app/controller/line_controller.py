@@ -1,4 +1,4 @@
-from app import app, db, line_bot_api, request, handler, Talk
+from app import *
 
 @app.route("/webhook", methods=['POST'])
 def callback():
