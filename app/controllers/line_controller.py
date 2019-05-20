@@ -1,4 +1,10 @@
-from app import *
+from app import (
+    flask_app, request, abort,
+    line_bot_api, handler,
+    InvalidSignatureError,
+    MessageEvent, TextMessage, TextSendMessage,
+    db
+)
 import app.models
 
 @flask_app.route("/webhook", methods=['POST'])
