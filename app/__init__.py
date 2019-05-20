@@ -13,12 +13,12 @@ from linebot.models import (
 
 import os
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
 
 CHANNEL_ACCESS_TOKEN = os.environ['CHANNEL_ACCESS_TOKEN']
 CHANNEL_SECRET       = os.environ['CHANNEL_SECRET']
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+flask_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
-db = SQLAlchemy(app)
+db = SQLAlchemy(flask_app)
