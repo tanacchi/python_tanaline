@@ -1,4 +1,5 @@
 from app import *
+import app.models
 
 @app.route("/webhook", methods=['POST'])
 def callback():
